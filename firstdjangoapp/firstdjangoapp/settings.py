@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'thoughtsapp'
+    'rest_framework',
+    'thoughts_app'
 ]
 
 MIDDLEWARE = [

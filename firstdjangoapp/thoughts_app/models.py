@@ -9,7 +9,7 @@ class Thought(models.Model):
     # department = models.CharField(max_length=100)
 
     class Meta:
-        app_label = 'thoughtsapp'
+        app_label = 'thoughts_app'
 
     def __str__(self):
         return self.mainText

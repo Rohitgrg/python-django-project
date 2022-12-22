@@ -11,4 +11,4 @@ class ThoughtSerializer(serializers.ModelSerializer):
     # Specify the fields that should be serialized
     class Meta:
         model = Thought
-        fields = ['mainText']
+        fields = ('mainText')
