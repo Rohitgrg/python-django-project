@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Thought(models.Model):
-    mainText = models.CharField(max_length=100)
+    main_text = models.CharField(max_length=100)
     # email = models.EmailField()
     # department = models.CharField(max_length=100)
 
@@ -12,4 +12,4 @@ class Thought(models.Model):
         app_label = 'thoughts_app'
 
     def __str__(self):
-        return self.mainText
+        return self.main_text

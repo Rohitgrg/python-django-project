@@ -26,12 +26,23 @@ class ThoughtListView(APIView):
         return Response(serializer.data)
 
     def post(self, request, *args, **kwards):
-        serializer = self.serializer_class(data=request.POST)
+        serializer = self.serializer_class(
+            data=request.data, context={'request': request})
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(self.serializer_class(serializer.data), status=201)
-        return Response({
-            'error': {
-                'email': "This field is required."
-            }
-        }, status=400)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+    def put(self, request, pk, format=None, *args, **kwargs):
+        thought_obj = Thought.objects.get(id=pk)
+        serializer = self.serializer_class(
+            thought_obj, data=request.data, context={'request': request})
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        thought_obj = Thought.objects.get(id=pk)
+        thought_obj.delete()
+        return Response(status=204)
